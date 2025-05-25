@@ -101,7 +101,7 @@ TweenService:Create(progressBar, TweenInfo.new(200, Enum.EasingStyle.Quad, Enum.
 }):Play()
 
 -- AL TERMINAR LA CARGA
-task.delay(7, function()
+task.delay(200, function()
 	local fadeOut = TweenInfo.new(1)
 	TweenService:Create(background, fadeOut, { BackgroundTransparency = 1 }):Play()
 	TweenService:Create(loadingText, fadeOut, { TextTransparency = 1 }):Play()
