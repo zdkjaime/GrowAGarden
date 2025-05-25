@@ -96,7 +96,7 @@ blur.Parent = Lighting
 TweenService:Create(blur, TweenInfo.new(0.5), { Size = 24 }):Play()
 
 -- Barra de carga más lenta
-TweenService:Create(progressBar, TweenInfo.new(100, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+TweenService:Create(progressBar, TweenInfo.new(200, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 	Size = UDim2.new(1, 0, 1, 0)
 }):Play()
 
