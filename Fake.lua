@@ -1,210 +1,188 @@
--- Pantalla de carga completa con nombre y mensaje final
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
-local Lighting = game:GetService("Lighting")
+--settings:
+local title = "Loading Script!" --upper title
+local loading_text = "Game Detected: 'Grow A Garden'" --gray title
+local loadingtime = 300 --loading time (in seconds)
 
-local player = Players.LocalPlayer
-local screenGui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-screenGui.Name = "CustomLoadingScreen"
-screenGui.IgnoreGuiInset = true
-screenGui.ResetOnSpawn = false
+--credits to saint !
+-- do not touch/edit anything below! unless you know how to code ;)
 
--- Fondo negro
-local background = Instance.new("Frame")
-background.Size = UDim2.new(1, 0, 1, 0)
-background.Position = UDim2.new(0, 0, 0, 0)
-background.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-background.Parent = screenGui
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local name = Instance.new("TextLabel")
+local loadingtext = Instance.new("TextLabel")
+local Dots = Instance.new("Frame")
+local Dot1 = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
+local InsideDot = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local Dot2 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local InsideDot_2 = Instance.new("Frame")
+local UICorner_5 = Instance.new("UICorner")
+local Dot3 = Instance.new("Frame")
+local UICorner_6 = Instance.new("UICorner")
+local InsideDot_3 = Instance.new("Frame")
+local UICorner_7 = Instance.new("UICorner")
+local seperator = Instance.new("Frame")
 
--- Figurita decorativa
-local decorative = Instance.new("ImageLabel")
-decorative.Size = UDim2.new(0.1, 0, 0.1, 0)
-decorative.Position = UDim2.new(0.45, 0, 0.25, 0)
-decorative.BackgroundTransparency = 1
-decorative.Image = "rbxassetid://7072718369"
-decorative.ImageColor3 = Color3.fromRGB(0, 170, 255)
-decorative.Parent = background
+--Properties:
 
-spawn(function()
-	while screenGui.Parent do
-		for i = 0, 360, 5 do
-			decorative.Rotation = i
-			wait(0.01)
-		end
-	end
-end)
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.DisplayOrder = 999999999
+ScreenGui.IgnoreGuiInset = true
 
--- Texto "Loading..."
-local loadingText = Instance.new("TextLabel")
-loadingText.Size = UDim2.new(0.6, 0, 0.1, 0)
-loadingText.Position = UDim2.new(0.2, 0, 0.4, 0)
-loadingText.BackgroundTransparency = 1
-loadingText.Text = "Loading..."
-loadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
-loadingText.TextScaled = true
-loadingText.Font = Enum.Font.GothamSemibold
-loadingText.Parent = background
+Frame.Parent = ScreenGui
+Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Frame.BackgroundTransparency = 0
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.LayoutOrder = 2
+Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+Frame.Size = UDim2.new(1, 0, 1, 0) -- Ocupa toda la pantalla
 
--- Barra exterior
-local barFrame = Instance.new("Frame")
-barFrame.Size = UDim2.new(0.6, 0, 0.02, 0)
-barFrame.Position = UDim2.new(0.2, 0, 0.55, 0)
-barFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-barFrame.BorderSizePixel = 0
-barFrame.Parent = background
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BorderSizePixel = 0
+Frame_2.Position = UDim2.new(0, 0, 0, 0) -- alineado arriba izquierda
+Frame_2.Size = UDim2.new(1, 0, 1, 0) -- ocupa todo el Frame padre
 
-local uiCorner = Instance.new("UICorner")
-uiCorner.CornerRadius = UDim.new(0, 10)
-uiCorner.Parent = barFrame
+UICorner.Parent = Frame_2
 
--- Barra interior
-local progressBar = Instance.new("Frame")
-progressBar.Size = UDim2.new(0, 0, 1, 0)
-progressBar.Position = UDim2.new(0, 0, 0, 0)
-progressBar.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
-progressBar.BorderSizePixel = 0
-progressBar.Parent = barFrame
+name.Name = "name"
+name.Parent = Frame_2
+name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+name.BackgroundTransparency = 1.000
+name.BorderColor3 = Color3.fromRGB(0, 0, 0)
+name.BorderSizePixel = 0
+name.Position = UDim2.new(0, 0, 0.10, 0) -- un poco más abajo para no estar pegado arriba
+name.Size = UDim2.new(1, 0, 0.15, 0)  -- aumentado el alto para texto más grande
+name.Font = Enum.Font.FredokaOne
+name.Text = title
+name.TextColor3 = Color3.fromRGB(255, 255, 255)
+name.TextScaled = true
+name.TextSize = 30.000  -- tamaño aumentado
+name.TextWrapped = true
 
-local barCorner = Instance.new("UICorner")
-barCorner.CornerRadius = UDim.new(0, 10)
-barCorner.Parent = progressBar
+loadingtext.Name = "loadingtext"
+loadingtext.Parent = Frame_2
+loadingtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+loadingtext.BackgroundTransparency = 1.000
+loadingtext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+loadingtext.BorderSizePixel = 0
+loadingtext.Position = UDim2.new(0, 0, 0.25, 0) -- más abajo que el título
+loadingtext.Size = UDim2.new(1, 0, 0.10, 0)  -- ancho completo, altura suficiente
+loadingtext.Font = Enum.Font.FredokaOne
+loadingtext.Text = loading_text
+loadingtext.TextColor3 = Color3.fromRGB(97, 97, 97)
+loadingtext.TextScaled = true
+loadingtext.TextSize = 24.000 -- tamaño aumentado
+loadingtext.TextWrapped = true
 
--- Gradiente animado
-local gradient = Instance.new("UIGradient")
-gradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255,255,255)),
-	ColorSequenceKeypoint.new(0.50, Color3.fromRGB(200,200,200)),
-	ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255,255,255))
-}
-gradient.Rotation = 0
-gradient.Parent = progressBar
+Dots.Name = "Dots"
+Dots.Parent = Frame_2
+Dots.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Dots.BackgroundTransparency = 1.000
+Dots.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dots.Position = UDim2.new(0.4, 0, 0.35, 0)
+Dots.Size = UDim2.new(0.2, 0, 0.1, 0)
 
-spawn(function()
+Dot1.Name = "Dot1"
+Dot1.Parent = Dots
+Dot1.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot1.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dot1.Position = UDim2.new(0, 0, 0.25, 0)
+Dot1.Size = UDim2.new(0.3, 0, 0.5, 0)
+
+UICorner_2.CornerRadius = UDim.new(0.5, 0)
+UICorner_2.Parent = Dot1
+
+InsideDot.Name = "InsideDot"
+InsideDot.Parent = Dot1
+InsideDot.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot.BorderColor3 = Color3.fromRGB(27, 42, 53)
+InsideDot.Position = UDim2.new(0.5, 0, 0.5, 0)
+InsideDot.Size = UDim2.new(0, 0, 0, 0)
+
+UICorner_3.CornerRadius = UDim.new(0.5, 0)
+UICorner_3.Parent = InsideDot
+
+Dot2.Name = "Dot2"
+Dot2.Parent = Dots
+Dot2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dot2.Position = UDim2.new(0.35, 0, 0.25, 0)
+Dot2.Size = UDim2.new(0.3, 0, 0.5, 0)
+
+UICorner_4.CornerRadius = UDim.new(0.5, 0)
+UICorner_4.Parent = Dot2
+
+InsideDot_2.Name = "InsideDot"
+InsideDot_2.Parent = Dot2
+InsideDot_2.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+InsideDot_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+InsideDot_2.Size = UDim2.new(0, 0, 0, 0)
+
+UICorner_5.CornerRadius = UDim.new(0.5, 0)
+UICorner_5.Parent = InsideDot_2
+
+Dot3.Name = "Dot3"
+Dot3.Parent = Dots
+Dot3.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+Dot3.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Dot3.Position = UDim2.new(0.7, 0, 0.25, 0)
+Dot3.Size = UDim2.new(0.3, 0, 0.5, 0)
+
+UICorner_6.CornerRadius = UDim.new(0.5, 0)
+UICorner_6.Parent = Dot3
+
+InsideDot_3.Name = "InsideDot"
+InsideDot_3.Parent = Dot3
+InsideDot_3.AnchorPoint = Vector2.new(0.5, 0.5)
+InsideDot_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+InsideDot_3.BorderColor3 = Color3.fromRGB(27, 42, 53)
+InsideDot_3.Position = UDim2.new(0.5, 0, 0.5, 0)
+InsideDot_3.Size = UDim2.new(0, 0, 0, 0)
+
+UICorner_7.CornerRadius = UDim.new(0.5, 0)
+UICorner_7.Parent = InsideDot_3
+
+seperator.Name = "seperator"
+seperator.Parent = Frame_2
+seperator.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
+seperator.BorderColor3 = Color3.fromRGB(0, 0, 0)
+seperator.BorderSizePixel = 0
+seperator.Position = UDim2.new(0, 0, 0.33, 0)
+seperator.Size = UDim2.new(1, 0, 0.02, 0)  -- línea ocupa todo el ancho
+
+-- Scripts:
+
+local function animateDots()
 	while true do
-		for i = 0, 360, 1 do
-			gradient.Rotation = i
-			wait(0.01)
-		end
+		wait(0.25)
+		Dot1.InsideDot:TweenSize(UDim2.new(1,0,1,0), "In", "Sine", 0.25, true)
+		wait(0.25)
+		Dot2.InsideDot:TweenSize(UDim2.new(1,0,1,0), "In", "Sine", 0.25, true)
+		wait(0.25)
+		Dot3.InsideDot:TweenSize(UDim2.new(1,0,1,0), "In", "Sine", 0.25, true)
+		wait(0.25)
+		Dot1.InsideDot:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", 0.25, true)
+		wait(0.25)
+		Dot2.InsideDot:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", 0.25, true)
+		wait(0.25)
+		Dot3.InsideDot:TweenSize(UDim2.new(0,0,0,0), "In", "Sine", 0.25, true)
 	end
-end)
+end
 
--- Blur inicial
-local blur = Instance.new("BlurEffect")
-blur.Size = 0
-blur.Parent = Lighting
+coroutine.wrap(animateDots)()
 
-TweenService:Create(blur, TweenInfo.new(0.5), { Size = 24 }):Play()
+wait(loadingtime)
 
--- Barra de carga más lenta
-TweenService:Create(progressBar, TweenInfo.new(200, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-	Size = UDim2.new(1, 0, 1, 0)
-}):Play()
-
--- AL TERMINAR LA CARGA
-task.delay(200, function()
-	local fadeOut = TweenInfo.new(1)
-	TweenService:Create(background, fadeOut, { BackgroundTransparency = 1 }):Play()
-	TweenService:Create(loadingText, fadeOut, { TextTransparency = 1 }):Play()
-	TweenService:Create(barFrame, fadeOut, { BackgroundTransparency = 1 }):Play()
-	TweenService:Create(progressBar, fadeOut, { BackgroundTransparency = 1 }):Play()
-	TweenService:Create(decorative, fadeOut, { ImageTransparency = 1 }):Play()
-
-	wait(1)
-	barFrame:Destroy()
-	progressBar:Destroy()
-	loadingText:Destroy()
-	decorative:Destroy()
-
-	-- Segundo Blur
-	local nameBlur = Instance.new("BlurEffect")
-	nameBlur.Size = 0
-	nameBlur.Parent = Lighting
-	TweenService:Create(nameBlur, TweenInfo.new(0.5), { Size = 20 }):Play()
-
-	-- INTERFAZ DE NOMBRE
-	local namePrompt = Instance.new("Frame")
-	namePrompt.Size = UDim2.new(0.5, 0, 0.5, 0)
-	namePrompt.Position = UDim2.new(0.25, 0, 0.25, 0)
-	namePrompt.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	namePrompt.BorderColor3 = Color3.fromRGB(0, 170, 255)
-	namePrompt.BorderSizePixel = 2
-	namePrompt.Parent = background
-
-	local nameUICorner = Instance.new("UICorner")
-	nameUICorner.CornerRadius = UDim.new(0.05, 0)
-	nameUICorner.Parent = namePrompt
-
-	local title = Instance.new("TextLabel")
-	title.Size = UDim2.new(1, 0, 0.2, 0)
-	title.Position = UDim2.new(0, 0, 0, 0)
-	title.BackgroundTransparency = 1
-	title.Text = "What's your name?"
-	title.Font = Enum.Font.GothamSemibold
-	title.TextColor3 = Color3.fromRGB(0, 170, 255)
-	title.TextScaled = true
-	title.Parent = namePrompt
-
-	local input = Instance.new("TextBox")
-	input.Size = UDim2.new(0.85, 0, 0.25, 0)
-	input.Position = UDim2.new(0.075, 0, 0.3, 0)
-	input.Text = ""
-	input.Font = Enum.Font.GothamSemibold
-	input.TextColor3 = Color3.new(1, 1, 1)
-	input.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-	input.ClearTextOnFocus = true
-	input.TextScaled = true
-	input.Parent = namePrompt
-
-	local inputCorner = Instance.new("UICorner")
-	inputCorner.CornerRadius = UDim.new(0.1, 0)
-	inputCorner.Parent = input
-
-	local submit = Instance.new("TextButton")
-	submit.Size = UDim2.new(0.6, 0, 0.2, 0)
-	submit.Position = UDim2.new(0.2, 0, 0.65, 0)
-	submit.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
-	submit.Text = "Submit"
-	submit.Font = Enum.Font.GothamSemibold
-	submit.TextColor3 = Color3.new(1, 1, 1)
-	submit.TextScaled = true
-	submit.Parent = namePrompt
-
-	local submitCorner = Instance.new("UICorner")
-	submitCorner.CornerRadius = UDim.new(0.1, 0)
-	submitCorner.Parent = submit
-
-	-- AL ENVIAR NOMBRE
-	submit.MouseButton1Click:Connect(function()
-		print("Nombre ingresado:", input.Text)
-
-		TweenService:Create(namePrompt, TweenInfo.new(0.5), { BackgroundTransparency = 1 }):Play()
-		for _, child in pairs(namePrompt:GetChildren()) do
-			if child:IsA("TextLabel") or child:IsA("TextBox") or child:IsA("TextButton") then
-				TweenService:Create(child, TweenInfo.new(0.5), {
-					TextTransparency = 1,
-					BackgroundTransparency = 1
-				}):Play()
-			end
-		end
-
-		wait(0.6)
-		namePrompt:Destroy()
-
-		local waitMessage = Instance.new("TextLabel")
-		waitMessage.Size = UDim2.new(1, 0, 0.2, 0)
-		waitMessage.Position = UDim2.new(0, 0, 0.4, 0)
-		waitMessage.BackgroundTransparency = 1
-		waitMessage.Text = "Wait Until We Finish Preparing All"
-		waitMessage.TextScaled = true
-		waitMessage.TextColor3 = Color3.fromRGB(0, 170, 255)
-		waitMessage.Font = Enum.Font.GothamSemibold
-		waitMessage.Parent = background
-
-		task.delay(180, function()
-			TweenService:Create(nameBlur, TweenInfo.new(0.5), { Size = 0 }):Play()
-			wait(0.6)
-			screenGui:Destroy()
-			nameBlur:Destroy()
-		end)
-	end)
-end)
+ScreenGui:Destroy()
