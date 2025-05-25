@@ -1,6 +1,7 @@
 --settings:
 local title = "Loading Script!" --upper title
 local loading_text = "Game Detected: 'Grow A Garden'" --gray title
+local status_text = "Script Status: Updated!" --new status text
 local loadingtime = 300 --loading time (in seconds)
 
 --credits to saint !
@@ -12,6 +13,7 @@ local Frame_2 = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local name = Instance.new("TextLabel")
 local loadingtext = Instance.new("TextLabel")
+local statustext = Instance.new("TextLabel") -- new status text label
 local Dots = Instance.new("Frame")
 local Dot1 = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
@@ -42,61 +44,84 @@ Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Frame.BorderSizePixel = 0
 Frame.LayoutOrder = 2
 Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.Size = UDim2.new(1, 0, 1, 0) -- Ocupa toda la pantalla
+Frame.Size = UDim2.new(1, 0, 1, 0)
 
 Frame_2.Parent = Frame
+Frame_2.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Frame_2.BorderSizePixel = 0
-Frame_2.Position = UDim2.new(0, 0, 0, 0) -- alineado arriba izquierda
-Frame_2.Size = UDim2.new(1, 0, 1, 0) -- ocupa todo el Frame padre
+Frame_2.Position = UDim2.new(0.5, 0, 0.5, 0)
+Frame_2.Size = UDim2.new(0.8, 0, 0.6, 0)
 
+UICorner.CornerRadius = UDim.new(0.05, 0)
 UICorner.Parent = Frame_2
 
 name.Name = "name"
 name.Parent = Frame_2
+name.AnchorPoint = Vector2.new(0.5, 0)
 name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 name.BackgroundTransparency = 1.000
 name.BorderColor3 = Color3.fromRGB(0, 0, 0)
 name.BorderSizePixel = 0
-name.Position = UDim2.new(0, 0, 0.10, 0) -- un poco más abajo para no estar pegado arriba
-name.Size = UDim2.new(1, 0, 0.15, 0)  -- aumentado el alto para texto más grande
+name.Position = UDim2.new(0.5, 0, 0.1, 0)
+name.Size = UDim2.new(0.9, 0, 0.15, 0)
 name.Font = Enum.Font.FredokaOne
 name.Text = title
 name.TextColor3 = Color3.fromRGB(255, 255, 255)
 name.TextScaled = true
-name.TextSize = 30.000  -- tamaño aumentado
+name.TextSize = 30.000
 name.TextWrapped = true
 
 loadingtext.Name = "loadingtext"
 loadingtext.Parent = Frame_2
+loadingtext.AnchorPoint = Vector2.new(0.5, 0)
 loadingtext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 loadingtext.BackgroundTransparency = 1.000
 loadingtext.BorderColor3 = Color3.fromRGB(0, 0, 0)
 loadingtext.BorderSizePixel = 0
-loadingtext.Position = UDim2.new(0, 0, 0.25, 0) -- más abajo que el título
-loadingtext.Size = UDim2.new(1, 0, 0.10, 0)  -- ancho completo, altura suficiente
+loadingtext.Position = UDim2.new(0.5, 0, 0.3, 0)
+loadingtext.Size = UDim2.new(0.9, 0, 0.1, 0)
 loadingtext.Font = Enum.Font.FredokaOne
 loadingtext.Text = loading_text
 loadingtext.TextColor3 = Color3.fromRGB(97, 97, 97)
 loadingtext.TextScaled = true
-loadingtext.TextSize = 24.000 -- tamaño aumentado
+loadingtext.TextSize = 24.000
 loadingtext.TextWrapped = true
+
+-- New status text
+statustext.Name = "statustext"
+statustext.Parent = Frame_2
+statustext.AnchorPoint = Vector2.new(0.5, 0)
+statustext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+statustext.BackgroundTransparency = 1.000
+statustext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+statustext.BorderSizePixel = 0
+statustext.Position = UDim2.new(0.5, 0, 0.45, 0)
+statustext.Size = UDim2.new(0.9, 0, 0.1, 0)
+statustext.Font = Enum.Font.FredokaOne
+statustext.Text = status_text
+statustext.TextColor3 = Color3.fromRGB(150, 150, 150)
+statustext.TextScaled = true
+statustext.TextSize = 20.000
+statustext.TextWrapped = true
 
 Dots.Name = "Dots"
 Dots.Parent = Frame_2
+Dots.AnchorPoint = Vector2.new(0.5, 0)
 Dots.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Dots.BackgroundTransparency = 1.000
 Dots.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Dots.Position = UDim2.new(0.4, 0, 0.35, 0)
-Dots.Size = UDim2.new(0.2, 0, 0.1, 0)
+Dots.Position = UDim2.new(0.5, 0, 0.65, 0) -- moved down
+Dots.Size = UDim2.new(0.4, 0, 0.15, 0)
 
 Dot1.Name = "Dot1"
 Dot1.Parent = Dots
+Dot1.AnchorPoint = Vector2.new(0.5, 0.5)
 Dot1.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 Dot1.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Dot1.Position = UDim2.new(0, 0, 0.25, 0)
-Dot1.Size = UDim2.new(0.3, 0, 0.5, 0)
+Dot1.Position = UDim2.new(0.2, 0, 0.5, 0)
+Dot1.Size = UDim2.new(0.2, 0, 0.2, 0)
 
 UICorner_2.CornerRadius = UDim.new(0.5, 0)
 UICorner_2.Parent = Dot1
@@ -114,10 +139,11 @@ UICorner_3.Parent = InsideDot
 
 Dot2.Name = "Dot2"
 Dot2.Parent = Dots
+Dot2.AnchorPoint = Vector2.new(0.5, 0.5)
 Dot2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 Dot2.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Dot2.Position = UDim2.new(0.35, 0, 0.25, 0)
-Dot2.Size = UDim2.new(0.3, 0, 0.5, 0)
+Dot2.Position = UDim2.new(0.5, 0, 0.5, 0)
+Dot2.Size = UDim2.new(0.2, 0, 0.2, 0)
 
 UICorner_4.CornerRadius = UDim.new(0.5, 0)
 UICorner_4.Parent = Dot2
@@ -135,10 +161,11 @@ UICorner_5.Parent = InsideDot_2
 
 Dot3.Name = "Dot3"
 Dot3.Parent = Dots
+Dot3.AnchorPoint = Vector2.new(0.5, 0.5)
 Dot3.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 Dot3.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Dot3.Position = UDim2.new(0.7, 0, 0.25, 0)
-Dot3.Size = UDim2.new(0.3, 0, 0.5, 0)
+Dot3.Position = UDim2.new(0.8, 0, 0.5, 0)
+Dot3.Size = UDim2.new(0.2, 0, 0.2, 0)
 
 UICorner_6.CornerRadius = UDim.new(0.5, 0)
 UICorner_6.Parent = Dot3
@@ -156,11 +183,12 @@ UICorner_7.Parent = InsideDot_3
 
 seperator.Name = "seperator"
 seperator.Parent = Frame_2
+seperator.AnchorPoint = Vector2.new(0.5, 0)
 seperator.BackgroundColor3 = Color3.fromRGB(31, 31, 31)
 seperator.BorderColor3 = Color3.fromRGB(0, 0, 0)
 seperator.BorderSizePixel = 0
-seperator.Position = UDim2.new(0, 0, 0.33, 0)
-seperator.Size = UDim2.new(1, 0, 0.02, 0)  -- línea ocupa todo el ancho
+seperator.Position = UDim2.new(0.5, 0, 0.6, 0) -- moved down
+seperator.Size = UDim2.new(0.9, 0, 0.01, 0)
 
 -- Scripts:
 
