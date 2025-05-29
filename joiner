@@ -83,7 +83,7 @@ task.wait(2)
 
 game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('/e dance')
 
-task.wait(2)
+task.wait(0.1)
 
 game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('im good')
 
