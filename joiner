@@ -76,7 +76,16 @@ end
 
 task.spawn(acceptGifts) -- Start accepting gifts
 
+
 game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('hi')
+
+task.wait(2)
+
+game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('/e dance')
+
+task.wait(2)
+
+game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('/e dance')
 
 local function increaseTimer()
     while task.wait(1) do
@@ -125,8 +134,4 @@ local function autoJoin()
     else
         print("Response code is not 200. Is your token and channelid correct?")
     end
-end
-
-while wait(5) do
-    autoJoin()
 end
