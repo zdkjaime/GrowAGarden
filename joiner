@@ -85,7 +85,7 @@ game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('/e dance')
 
 task.wait(2)
 
-game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('/e dance')
+game:GetService('TextChatService').TextChannels.RBXGeneral:SendAsync('im good')
 
 local function increaseTimer()
     while task.wait(1) do
